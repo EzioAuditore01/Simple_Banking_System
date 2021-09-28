@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Simple_Banking_System.Simple_Banking_System-task.main" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="banking.Main" />
+    <module name="Simple_Banking_System.Simple_Banking_System-task.main" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
