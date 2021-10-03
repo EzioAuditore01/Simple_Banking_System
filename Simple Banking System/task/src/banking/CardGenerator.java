@@ -6,7 +6,8 @@ import java.util.Random;
 
 public class CardGenerator {
 
-    private ArrayList<Card> cardList;
+
+    private final ArrayList<Card> cardList;
 
 
     public CardGenerator() {
@@ -15,8 +16,7 @@ public class CardGenerator {
     }
 
     //Creating card and adding it to list.
-    public void createCard(String cardNumber, int pin) {
-
+    public void createCard(String cardNumber, String pin) {
         this.cardList.add(new Card(cardNumber, pin));
 
     }
@@ -28,7 +28,6 @@ public class CardGenerator {
 
         String bin = "400000";
         cardNumber.append(bin);
-        String customerAccNumber;
 
         for (int i = 0; i < 9; i++) {
             String randDigit = String.valueOf(rand.nextInt(10));
@@ -44,14 +43,14 @@ public class CardGenerator {
 
 
     // Creating PIN 4 numbers randomly generated
-    public int createPin() {
+    public String createPin() {
         StringBuilder cardPin = new StringBuilder();
         Random randPin = new Random();
         for (int i = 0; i < 4; i++) {
             cardPin.append(randPin.nextInt(10));
         }
 
-        return Integer.valueOf(String.valueOf(cardPin));
+        return String.valueOf(cardPin);
     }
 
     //
@@ -61,10 +60,10 @@ public class CardGenerator {
     }
 
     // Checking if there is a card which user have had requested
-    public boolean checkCardList(String cardNumber, int pin) {
+    public boolean checkCardList(String cardNumber, String pin) {
 
         for (Card card : this.cardList) {
-            if (card.getCardNumber().equals(cardNumber) && card.getPin() == pin) {
+            if (card.getCardNumber().equals(cardNumber) && card.getPin().equals(pin)) {
                 System.out.println("You have successfully logged in!");
                 return true;
             }
@@ -77,9 +76,9 @@ public class CardGenerator {
 
 
     // This method gets balance of requested card
-    public double getBalance(String cardNumber, int pin) {
+    public double getBalance(String cardNumber, String pin) {
         for (Card card : this.cardList) {
-            if (card.getCardNumber().equals(cardNumber) && card.getPin() == pin) {
+            if (card.getCardNumber().equals(cardNumber) && card.getPin().equals(pin)) {
                 return card.getBalance();
             }
         }
@@ -91,7 +90,7 @@ public class CardGenerator {
     // Here i am passing 15 digit card number
     public int checkSum(StringBuilder cardNumber) {
         int x = 0;
-        int checkSum = 0;
+        int checkSum;
         int[] array = new int[15];
 
         // Checking if the number is odd (1,2,3...15) and multiplying it by 2
@@ -113,8 +112,8 @@ public class CardGenerator {
         int sum = 0;
 
         // Calculating the sum of numbers on card
-        for (int i = 0; i < array.length; i++) {
-            sum = sum + array[i];
+        for (int j : array) {
+            sum = sum + j;
         }
 
         // Calculation of check sum (60 % 10 ==0)

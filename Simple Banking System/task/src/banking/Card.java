@@ -3,8 +3,9 @@ package banking;
 public class Card {
 
     private String cardNumber;
-    private int pin;
+    private String pin;
     private double balance;
+
 
     public double getBalance() {
         return balance;
@@ -14,17 +15,17 @@ public class Card {
         this.balance = balance;
     }
 
-    public Card(String cardNumber, int pin) {
+    public Card(String cardNumber, String pin) {
         this.cardNumber = cardNumber;
         this.pin = pin;
         this.balance =0;
     }
 
-    public int getPin() {
+    public String getPin() {
         return this.pin;
     }
 
-    public void setPin(int pin){
+    public void setPin(String pin){
         this.pin = pin;
     }
 
@@ -39,5 +40,6 @@ public class Card {
     public String toString(){
         return this.cardNumber + " " + this.pin;
     }
+
 
 }

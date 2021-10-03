@@ -1,23 +1,18 @@
 package banking;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.net.URL;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.Connection;
-import java.sql.DatabaseMetaData;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
 
-
+        DatabaseManager dbm = new DatabaseManager();
         Scanner scanner = new Scanner(System.in);
-        CardGenerator cd = new CardGenerator();
+        dbm.createNewTable();
+        dbm.deleteRecords();
+
         UserInterface ui = new UserInterface();
+
 
         while (true) {
 
@@ -33,11 +28,18 @@ public class Main {
 
             if (input == 2) {
 
-                ui.logToAcc();
+                if (!ui.logToAcc()) {
+                    break;
+                }
+            }
 
+            if (input == 0) {
+                break;
             }
 
         }
+
+        System.out.println("Bye!");
 
     }
 
