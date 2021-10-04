@@ -3,7 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/295560/additional_files.json
   is_template_based: false
   use_ide: true
-update_date: Sun, 03 Oct 2021 17:34:05 UTC
+update_date: Mon, 04 Oct 2021 06:09:37 UTC
 stages:
 - id: 515
   step: 8425
@@ -140,6 +140,8 @@ topics:
   1:
   - title: Command-line arguments
     theory_id: 3566
+  - title: IntelliJ Run Configurations
+    theory_id: 10630
   - title: Files
     theory_id: 3635
   - title: Reading files
@@ -156,8 +158,6 @@ topics:
     theory_id: 7917
   - title: Dependency management
     theory_id: 5076
-  - title: IntelliJ Run Configurations
-    theory_id: 10630
   2:
   - title: Introduction to databases
     theory_id: 8497
