@@ -5,13 +5,11 @@ import java.util.Random;
 
 
 public class CardGenerator {
-
-
     private final ArrayList<Card> cardList;
 
 
     public CardGenerator() {
-        this.cardList = new ArrayList<Card>();
+        this.cardList = new ArrayList<>();
 
     }
 
@@ -25,7 +23,6 @@ public class CardGenerator {
     public String createNumber() {
         StringBuilder cardNumber = new StringBuilder();
         Random rand = new Random();
-
         String bin = "400000";
         cardNumber.append(bin);
 
@@ -53,38 +50,17 @@ public class CardGenerator {
         return String.valueOf(cardPin);
     }
 
-    //
-    public ArrayList<Card> getCardListlist() {
-
-        return this.cardList;
-    }
-
     // Checking if there is a card which user have had requested
     public boolean checkCardList(String cardNumber, String pin) {
-
         for (Card card : this.cardList) {
             if (card.getCardNumber().equals(cardNumber) && card.getPin().equals(pin)) {
                 System.out.println("You have successfully logged in!");
                 return true;
             }
-
         }
-
-
         return false;
     }
 
-
-    // This method gets balance of requested card
-    public double getBalance(String cardNumber, String pin) {
-        for (Card card : this.cardList) {
-            if (card.getCardNumber().equals(cardNumber) && card.getPin().equals(pin)) {
-                return card.getBalance();
-            }
-        }
-
-        return 0;
-    }
 
     // Implementing Luhn algorithm
     // Here i am passing 15 digit card number
@@ -95,8 +71,10 @@ public class CardGenerator {
 
         // Checking if the number is odd (1,2,3...15) and multiplying it by 2
         for (int i = 0; i < array.length; i++) {
+
             if ((i + 1) % 2 == 1) {
                 array[i] = Character.getNumericValue(cardNumber.charAt(i)) * 2;
+                System.out.println(array[i]);
             } else {
                 array[i] = Character.getNumericValue(cardNumber.charAt(i));
             }

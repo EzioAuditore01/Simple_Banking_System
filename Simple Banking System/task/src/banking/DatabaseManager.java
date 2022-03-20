@@ -3,10 +3,8 @@ package banking;
 import java.sql.*;
 
 public class DatabaseManager {
-
+    String url = "jdbc:sqlite:card.s3db";
     public void createDatabase() {
-
-        String url = "jdbc:sqlite:card.s3db";
 
         try (Connection con = DriverManager.getConnection(url)) {
             if (con != null) {
@@ -23,7 +21,7 @@ public class DatabaseManager {
 
     // Connect to database
     public Connection connect() {
-        String url = "jdbc:sqlite:card.s3db";
+
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
@@ -35,10 +33,6 @@ public class DatabaseManager {
 
     // Create new table
     public void createNewTable() {
-        // SQLite connection string
-        String url = "jdbc:sqlite:card.s3db";
-        ;
-
         // SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS card (\n"
                 + "	id integer PRIMARY KEY,\n"
@@ -49,7 +43,6 @@ public class DatabaseManager {
 
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
-            // create a new table
             stmt.execute(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -63,7 +56,6 @@ public class DatabaseManager {
 
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
-            // create a new table
             stmt.execute(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -87,11 +79,9 @@ public class DatabaseManager {
     // Delete records from table
     public void deleteRecords() {
         String url = "jdbc:sqlite:card.s3db";
-        ;
         String sql = "DELETE FROM card;";
         try (Connection conn = DriverManager.getConnection(url);
              Statement stmt = conn.createStatement()) {
-            // create a new table
             stmt.execute(sql);
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -101,16 +91,12 @@ public class DatabaseManager {
 
     // Select balance from card info
     public int selectBalance(String number) {
-
         String sql = "SELECT balance FROM card WHERE number = ?";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, number);
-
             ResultSet rs = pstmt.executeQuery();
-
-
             return rs.getInt(1);
         } catch (SQLException e) {
 
@@ -128,7 +114,6 @@ public class DatabaseManager {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, balance);
             pstmt.setString(2, number);
-
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -137,26 +122,21 @@ public class DatabaseManager {
 
     // Checking if the card exist
     public boolean cardExistance(String number) {
-
         String sql = "SELECT number FROM card WHERE number = ?";
 
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, number);
-
             ResultSet rs = pstmt.executeQuery();
             if (rs.getString(1).equals(number)) {
                 return true;
-
             }
-
             return false;
 
         } catch (SQLException e) {
 
             return false;
         }
-
 
     }
 
@@ -168,7 +148,6 @@ public class DatabaseManager {
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setInt(1, balance);
             pstmt.setString(2, number);
-
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -182,13 +161,11 @@ public class DatabaseManager {
         try (Connection conn = connect();
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
             pstmt.setString(1, number);
-
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-
 
 }
 

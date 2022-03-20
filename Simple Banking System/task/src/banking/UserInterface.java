@@ -30,17 +30,15 @@ public class UserInterface {
     }
 
     public boolean logToAcc() {
-
         System.out.println();
         System.out.println("Enter your card number:");
         String cardNumberX = scanner.nextLine();
         System.out.println("Enter your PIN:");
         String pinX = (scanner.nextLine());
 
+        System.out.println();
         if (cd.checkCardList(cardNumberX, pinX)) {
-            System.out.println();
             while (true) {
-
                 System.out.println("1. Balance");
                 System.out.println("2. Add income");
                 System.out.println("3. Do transfer");
@@ -51,10 +49,8 @@ public class UserInterface {
 
                 if (inputX == 1) {
                     System.out.println();
-
                     System.out.println("Balance: " + dbm.selectBalance(cardNumberX));
                     System.out.println();
-
                     continue;
                 }
 
@@ -65,7 +61,6 @@ public class UserInterface {
                     dbm.addBalance(amount, cardNumberX);
                     System.out.println("Income was added!");
                     System.out.println();
-
                 }
 
                 if (inputX == 3) {
@@ -127,13 +122,10 @@ public class UserInterface {
                     return false;
                 }
 
-
             }
         } else {
-            System.out.println();
             System.out.println("Wrong card number or PIN!");
         }
-
 
         return true;
     }
